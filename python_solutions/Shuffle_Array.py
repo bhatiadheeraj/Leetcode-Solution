@@ -7,7 +7,6 @@
 
 def shuffle(nums, n):
     result = []
-    div = int(len(nums)+1/n)
     for x in range(int(len(nums)/2)):
         result.append(nums[x])
         result.append(nums[x+n])
