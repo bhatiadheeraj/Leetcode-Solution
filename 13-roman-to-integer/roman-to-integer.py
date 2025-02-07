@@ -10,15 +10,14 @@ class Solution:
             "M": 1000
         }
 
-        sum = 0
-        s = s.replace('IV', 'IIII') \
-             .replace('IX', 'VIIII') \
-             .replace('XL', 'XXXX') \
-             .replace('XC', 'LXXXX') \
-             .replace('CD', 'CCCC') \
-             .replace('CM', 'DCCCC')
-
-        for index,char in enumerate(list(s)):
-            sum += symbol_to_val[char]
-        
-        return sum
+        total = 0
+        prev = 0
+        #IV -> #VI
+        for index,char in enumerate(reversed(list(s))):
+            char_val = symbol_to_val[char]
+            if char_val >= prev :
+                total += char_val
+            else:
+                total -= char_val
+            prev = char_val
+        return total
