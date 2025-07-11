@@ -1,21 +1,24 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        
         if len(s) % 2 != 0:
             return False
-    
-        stack = []
 
-        for char in s:
-            if char in ['{' , '[' , '(']:    
-                stack.append(char)
-            else:
-                if not stack:
-                    return False
-                top = stack.pop()
-                if (char == ')' and top != '(') or (char == ']' 
-                and top != '[') or (char == '}' and top != '{'):
-                    return False
-            
+        bracket_key = {
+            '{' : '}',
+            '[' : ']',
+            '(' : ')'
+        }
         
-        return len(stack) == 0
+        stack = []
+        for index in range(len(s)):
+            item = s[index]
+            if item in bracket_key.keys():
+                stack.append(item)
+            else:
+                if stack == []:
+                    return False
+                if bracket_key[stack.pop()] != item:
+                    return False
+        if len(stack) != 0:
+            return False
+        return True
