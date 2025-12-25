@@ -1,29 +1,22 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        if len(s) % 2 != 0:
+        if len(s) <=1:
             return False
-        if s[0] == ']' or s[0] == '}' or s[0] == ')':
-            return False
-
-        map_bracket = {
-            '[' : ']',
-            '{' : '}',
-            '(' : ')' 
-        }
-
         stack = []
-
-        #s = '{}'
-
+        brackets = {
+        ")" : "(",
+        "}": "{",
+        "]": "["
+        }
         for item in s:
-            if item in map_bracket.keys():
+            if item in brackets.values():
                 stack.append(item)
-            if item in map_bracket.values():
-                if len(stack) !=0:
-                    front_of_list = stack.pop()
-                    if map_bracket[front_of_list] != item:
-                            return False
+            if item in brackets.keys():
+                if len(stack) >= 1 and stack[-1] == brackets.get(""+item,None):
+                    stack.pop()
                 else:
                     return False
-        
-        return len(stack) == 0       
+        if len(stack) > 0:
+            return False
+        return True
+    
