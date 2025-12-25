@@ -2,6 +2,7 @@ class Solution:
     def isValid(self, s: str) -> bool:
         if len(s) <=1:
             return False
+        
         stack = []
         brackets = {
         ")" : "(",
