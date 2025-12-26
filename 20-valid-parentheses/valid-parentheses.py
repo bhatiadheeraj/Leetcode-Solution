@@ -16,7 +16,7 @@ class Solution:
                     return False
             else:
                 stack.append(item)
-        if len(stack) >0:
+        if len(stack) > 0:
             return False
 
         return True
