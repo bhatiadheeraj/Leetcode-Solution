@@ -8,5 +8,4 @@ class Solution:
             if price < minPrice:
                 minPrice = price
             maxProfit = max(profit,maxProfit)
-
         return maxProfit
