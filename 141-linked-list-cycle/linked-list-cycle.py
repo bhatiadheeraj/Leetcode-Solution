@@ -14,5 +14,4 @@ class Solution:
             runner = runner.next.next
             if current == runner:
                 return True
-        
         return False
