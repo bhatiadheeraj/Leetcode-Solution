@@ -9,10 +9,12 @@ class Solution:
         current = head
         runner = head
 
-        while runner != None and runner.next != None:
+        while runner:
+            if runner.next == None:
+                return False
             current = current.next
             runner = runner.next.next
-            if runner == current:
+            if current == runner:
                 return True
         
         return False
