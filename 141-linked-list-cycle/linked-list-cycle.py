@@ -9,9 +9,7 @@ class Solution:
         current = head
         runner = head
 
-        while runner:
-            if runner.next == None:
-                return False
+        while runner and runner.next != None:
             current = current.next
             runner = runner.next.next
             if current == runner:
