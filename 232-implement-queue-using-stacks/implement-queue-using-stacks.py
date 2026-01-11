@@ -1,4 +1,6 @@
 class MyQueue:
+    #stack = filo
+    #queue is firfo
 
     stack = []
     stackTransfer = []
@@ -10,19 +12,17 @@ class MyQueue:
         self.stack.append(x)
 
     def pop(self) -> int:
-        while(len(self.stack)):
+        while(len(self.stack)) :
             self.stackTransfer.append(self.stack.pop())
         ret = self.stackTransfer.pop()
-        while(len(self.stackTransfer)):
+        while(len(self.stackTransfer)) :
             self.stack.append(self.stackTransfer.pop())
         return ret
-
     def peek(self) -> int:
         return self.stack[0]
 
     def empty(self) -> bool:
-        return not len(self.stack)
-        
+        return len(self.stack) == 0
 
 
 # Your MyQueue object will be instantiated and called as such:
