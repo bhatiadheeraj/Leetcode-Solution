@@ -2,6 +2,9 @@ class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
         char_to_count_ransomNote = {}
         char_to_count_magazine = {}
+
+        if len(magazine) < len(ransomNote):
+            return False
         
         for item in magazine:
             if char_to_count_magazine.get(item,0):
