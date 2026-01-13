@@ -1,25 +1,30 @@
 class MyQueue:
     stack = []
-    selfTransfer = []
+    transferStack = []
     def __init__(self):
         self.stack = []
-        self.stackTransfer = []
+        self.transferStack = []
+
     def push(self, x: int) -> None:
         self.stack.append(x)
 
     def pop(self) -> int:
-        while(len(self.stack)):
-            self.stackTransfer.append(self.stack.pop())
-        ret = self.stackTransfer.pop()
-        while(len(self.stackTransfer)):
-            self.stack.append(self.stackTransfer.pop())
+        #queue is first in first out
+        #stack is firstin last out
+        #reverse the stack pop the item put it back 
+
+        while len(self.stack):
+            self.transferStack.append(self.stack.pop())
+        ret = self.transferStack.pop()
+        while len(self.transferStack):
+            self.stack.append(self.transferStack.pop())
         return ret
 
     def peek(self) -> int:
         return self.stack[0]
 
     def empty(self) -> bool:
-        return len(self.stack) == 0 
+        return len(self.stack) == 0
 
 
 # Your MyQueue object will be instantiated and called as such:
