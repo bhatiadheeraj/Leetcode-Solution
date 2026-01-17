@@ -1,17 +1,14 @@
-from collections import Counter
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        threshold = floor(len(nums) // 2)
-        dict_vals = Counter(nums)
-
-        maxVal = -1
-        ret = 0
-
-        print(dict_vals, threshold)
-        for key,val in dict_vals.items():
-            if val >= threshold and val > maxVal:
-                maxVal = val
-                ret = key
-
         
-        return ret 
+        count = 0
+        res = 0
+        for item in nums:
+            if count == 0:
+                count = 1
+                res = item
+            elif res == item :
+                count +=1
+            else:
+                count -= 1
+        return res
