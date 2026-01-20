@@ -1,19 +1,36 @@
 class Solution:
     def addBinary(self, a: str, b: str) -> str:
-        res = ""
+        if not a:
+            return b if b else "0"
+        if not b:
+            return a
+  
+        i = len(a) - 1
+        j = len(b) - 1
         carry = 0
+        result = []
 
-        a,b = a[::-1], b[::-1]
+        # while i>= 0 and j >= 0 or carry:
+        #     bit_a = int(a[i]) if i>=0 else 0 
+        #     bit_b = int(b[j]) if j >=0 else 0
+        #     total = bit_a + bit_b + carry 
+        #     result.append(str(total % 2))
+        #     carry = total // 2
+        #     i -= 1
+        #     j -= 1
 
-        for i in range(max(len(a),len(b))):
-            digitA = ord(a[i]) - ord("0") if i < len(a) else 0
-            digitB = ord(b[i]) - ord("0") if i < len(b) else 0 
-            total = digitA + digitB + carry
-            char = str(total % 2)
-            res = char + res 
-            carry = total // 2 
+        # return ''.join(reversed(result))
 
-        if carry: 
-            res = "1" + res
 
-        return res
+        while i >= 0 or j >= 0 or carry:
+            bit_a = int(a[i]) if i >= 0 else 0
+            bit_b = int(b[j]) if j >= 0 else 0
+          
+            total = bit_a + bit_b + carry
+            result.append(str(total % 2))
+            carry = total // 2
+          
+            i -= 1
+            j -= 1
+      
+        return ''.join(reversed(result))
