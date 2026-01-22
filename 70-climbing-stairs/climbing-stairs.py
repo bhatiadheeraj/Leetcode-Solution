@@ -1,9 +1,8 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        ways = [1, 1, 2]
-
+        steps = [1, 1, 2]
+        
         for index in range(3, n+1):
-            ways.append(ways[index-1] + ways[index -2])
+            steps.append(steps[index-1]+steps[index-2])
         
-        return ways[n]
-        
+        return steps[n]
