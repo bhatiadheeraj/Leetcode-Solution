@@ -1,17 +1,13 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        threshold = len(nums) // 2 #floor integer divsion
-        count = 0
-        res = 0
-        for digit in nums:
-            if count == 0:
-                count = 1
-                res = digit
-            elif digit !=res:
-                count -= 1
-            else:
-                count += 1
-        return res
-
-
-
+        element = nums[0]
+        count = 1
+        for index in range(1, len(nums)):
+            if nums[index] == element:
+                count +=1
+            elif nums[index] != element:
+                count -=1 
+                if count ==0:
+                    element = nums[index]
+                    count +=1 
+        return element
