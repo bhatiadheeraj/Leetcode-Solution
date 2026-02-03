@@ -13,4 +13,3 @@ class Solution:
             return self.lowestCommonAncestor(root.right, p, q)
         
         return root
-        
