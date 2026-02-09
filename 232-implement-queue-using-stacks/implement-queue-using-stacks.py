@@ -9,10 +9,6 @@ class MyQueue:
         self.stack.append(x)
 
     def pop(self) -> int:
-        #queue is first in first out
-        #stack is firstin last out
-        #reverse the stack pop the item put it back 
-
         while len(self.stack):
             self.transferStack.append(self.stack.pop())
         ret = self.transferStack.pop()
@@ -22,6 +18,7 @@ class MyQueue:
 
     def peek(self) -> int:
         return self.stack[0]
+        
 
     def empty(self) -> bool:
         return len(self.stack) == 0
