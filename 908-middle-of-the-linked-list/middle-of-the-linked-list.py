@@ -6,11 +6,11 @@
 class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
         curr = head
-        runner = head
+        forward = head
 
-        while runner and runner.next:
-            curr = curr.next
-            runner = runner.next.next
+        while curr and curr.next:
+            curr = curr.next.next
+            forward = forward.next
         
-        return curr 
+        return forward
         
