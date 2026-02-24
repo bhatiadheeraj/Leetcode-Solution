@@ -1,28 +1,20 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        if len(s) % 2 !=0 :
-            return False
+        dict_bracket = {
+            '}' : '{',
+            ']' : '[', 
+            ')' : '('
+        }
 
         stack = []
 
-        dict_bracket = {
-            "}" : "{",
-            "]" : "[",
-            ")" : "("
-        }
-
-        for bracket in s:
-            if dict_bracket.get(bracket, 0) != 0 and len(stack) >  0:
-                stack_top = stack.pop()
-                if dict_bracket[bracket] != stack_top:
-                #if its a closing bracket then the top of stack should have its open bracket
-                #stack 
-                    print("here", dict_bracket[bracket], stack_top)
+        for char in s:
+            if dict_bracket.get(char, 0) != 0 and len(stack) > 0:
+                val_at_front = stack.pop()
+                if val_at_front != dict_bracket.get(char,0):
                     return False
             else:
-                stack.append(bracket)
-        
-        if len(stack) !=0 : 
+                stack.append(char)
+        if len(stack) != 0:
             return False
-        
         return True
