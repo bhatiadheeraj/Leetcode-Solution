@@ -6,21 +6,18 @@ class Solution:
         queue = deque()
         for row in range(rows):
             for col in range(cols):
-                if mat[row][col] == 1:
-                    mat[row][col] = -1
+                if mat[row][col] == 0:
+                    queue.append([row,col])
                 else:
-                    queue.append((row,col))
-        directions = [(-1,0), (1,0), (0,1), (0,-1)]
+                    mat[row][col] = float('-inf')
 
+        directions = [(0,-1), (1,0), (0,1), (-1,0)]
         while queue:
-            i,j = queue.popleft()
-            for row, col in directions:
-                next_row = i+row
-                next_col = j + col
-
-                #safe check limits
-                if (0 <= next_row < rows and 0 <= next_col < cols and mat[next_row][next_col] == -1):
-                    mat[next_row][next_col] = mat[i][j] + 1
-                    queue.append((next_row,next_col))
-       
+            i, j = queue.popleft()
+            for direction in directions:
+                neighbor_x,neighbor_y = i + direction[0], j +direction[1]
+                if 0 <= neighbor_x < rows and 0 <= neighbor_y < cols and mat[neighbor_x][neighbor_y] == float('-inf'):
+                    mat[neighbor_x][neighbor_y] = mat[i][j] + 1
+                    queue.append((neighbor_x,neighbor_y ))
+                
         return mat
