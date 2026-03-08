@@ -13,7 +13,7 @@ class Solution:
                 else:
                     mat[row][col] = float('-inf')
         
-        directions = [(0,-1), (1,0), (0,1), (-1,0)]
+        directions = [(1,0), (-1,0), (0,1), (0, -1)]
 
         while queue:
             i,j = queue.popleft()
@@ -21,7 +21,7 @@ class Solution:
                 next_row = i + direction[0]
                 next_col = j + direction[1]
 
-                if 0 <= next_row < rows and 0 <= next_col < cols and mat[next_row][next_col] == float('-inf'):
+                if next_row >=0 and next_row < rows and next_col >=0 and next_col < cols and mat[next_row][next_col] == float('-inf'):
                     mat[next_row][next_col] = mat[i][j] + 1
                     queue.append((next_row, next_col))
 
