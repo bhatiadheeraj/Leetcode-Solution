@@ -1,23 +1,21 @@
 class Solution:
     def romanToInt(self, s: str) -> int:
-        symbol_to_val = {
-            "I" : 1,
-            "V" : 5,
-            "X" : 10,
-            "L" : 50,
-            "C": 100,
-            "D": 500,
-            "M": 1000
+        symbol_value = {
+            'I' : 1,
+            'V' : 5,
+            'X' : 10,
+            'L' : 50,
+            'C' : 100,
+            'D' : 500,
+            'M' : 1000
         }
 
-        total = 0
-        prev = 0
-        #IV -> #VI
-        for index,char in enumerate(reversed(list(s))):
-            char_val = symbol_to_val[char]
-            if char_val >= prev :
-                total += char_val
-            else:
-                total -= char_val
-            prev = char_val
-        return total
+        num = 0
+        last_char = ''
+        for char in s:
+            num += symbol_value.get(char, 0)
+            if last_char and symbol_value[char] > symbol_value[last_char]:
+                num -= 2 * symbol_value[last_char]
+            last_char = char
+        
+        return num
