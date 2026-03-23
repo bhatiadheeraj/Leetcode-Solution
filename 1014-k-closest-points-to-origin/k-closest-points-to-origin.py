@@ -1,13 +1,15 @@
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
         result = []
-        for item in points:
-            result.append((item, self.calc(item[0],item[1])))
-        ret = sorted(result, key = lambda x:x[1])
-        res = []
-        for item in ret[:k]:
-            res.append(item[0])
-        return res
+        for items in points:
+            result.append((items,self.distance(items[0],items[1])))
         
-    def calc(self,x,y):
-        return dist((0,0),(x,y))
+        computed =  sorted(result, key= lambda res:res[1])[:k]
+        result = []
+        for item in computed:
+            result.append(item[0])
+        
+        return result
+    
+    def distance(self,x,y):
+        return math.dist([0,0],[x,y])
