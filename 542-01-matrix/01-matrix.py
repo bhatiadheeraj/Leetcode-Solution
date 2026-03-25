@@ -1,24 +1,25 @@
 class Solution:
     def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        #lets prepare the matri for reslt 
         q = deque()
         rows = len(mat)
         cols = len(mat[0])
-
-        for row in range(rows):
-            for col in range(cols):
-                if mat[row][col] !=0:
-                    mat[row][col] = float('inf')
+        for i in range(rows):
+            for j in range(cols):
+                if mat[i][j] == 0:
+                    q.append((i,j))
                 else:
-                    q.append((row,col))
+                    mat[i][j] = -1
+        
+        directions = [(-1,0) , (1,0), (0,1), (0,-1)]
 
-        directions = [(-1,0), (0, 1), (1 , 0), (0,-1)]
         while q:
             i,j = q.popleft()
             for direction in directions:
-                n_row = i + direction[0]
-                n_col = j + direction[1]
-                if n_row >= 0 and n_row < rows and 0 <= n_col < cols and mat[n_row][n_col] == float('inf'):
-                    mat[n_row][n_col] = mat[i][j] + 1 
-                    q.append((n_row,n_col))
+                next_row = direction[0] + i 
+                next_col = direction[1] + j 
+                if next_row >= 0 and next_row < rows and next_col >= 0 and next_col < cols and mat[next_row][next_col] == -1:
+                    mat[next_row][next_col] = mat[i][j] + 1
+                    q.append((next_row, next_col))
         
         return mat
