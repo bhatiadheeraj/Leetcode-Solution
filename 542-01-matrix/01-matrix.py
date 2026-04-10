@@ -1,25 +1,26 @@
 class Solution:
     def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
-        #lets prepare the matri for reslt 
-        q = deque()
+        #prepare the matrix where there is 1 mark it as - and append 0 in queue
         rows = len(mat)
         cols = len(mat[0])
-        for i in range(rows):
-            for j in range(cols):
-                if mat[i][j] == 0:
-                    q.append((i,j))
+        q = deque()
+
+        for row in range(rows):
+            for col in range(cols):
+                if mat[row][col] == 1:
+                    mat[row][col] = -1
                 else:
-                    mat[i][j] = -1
-        
-        directions = [(-1,0) , (1,0), (0,1), (0,-1)]
+                    q.append((row,col))
+        directions = [(-1,0), (0,1), (1,0), (0,-1)]
 
         while q:
-            i,j = q.popleft()
+            current_item = q.popleft()
             for direction in directions:
-                next_row = direction[0] + i 
-                next_col = direction[1] + j 
-                if next_row >= 0 and next_row < rows and next_col >= 0 and next_col < cols and mat[next_row][next_col] == -1:
-                    mat[next_row][next_col] = mat[i][j] + 1
-                    q.append((next_row, next_col))
+                next_item_row = direction[0] + current_item[0]
+                next_item_col = direction[1] + current_item[1]
+                if next_item_row >= 0 and next_item_row < rows and next_item_col >= 0 and next_item_col < cols and mat[next_item_row][next_item_col] == -1:
+                    mat[next_item_row][next_item_col] =  mat[current_item[0]][current_item[1]] + 1
+                    q.append((next_item_row, next_item_col))
         
+
         return mat
